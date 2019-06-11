@@ -1,0 +1,27 @@
+[package]
+name = "sgx_tcrypto_helper"
+version = "1.0.8"
+authors = ["Baidu"]
+repository = "https://github.com/baidu/rust-sgx-sdk"
+license-file = "LICENSE"
+documentation = "https://dingelish.github.io/"
+description = "Rust SGX SDK provides the ability to write Intel SGX applications in Rust Programming Language."
+
+[lib]
+name = "sgx_tcrypto_helper"
+crate-type = ["staticlib","rlib"]
+
+[features]
+default = ["mesalock_sgx"]
+mesalock_sgx = []
+
+[target.'cfg(not(target_env = "sgx"))'.dependencies]
+sgx_tcrypto = { rev = "v1.0.8", git = "https://github.com/baidu/rust-sgx-sdk.git" }
+sgx_tstd    = { rev = "v1.0.8", git = "https://github.com/baidu/rust-sgx-sdk.git" }
+sgx_types   = { rev = "v1.0.8", git = "https://github.com/baidu/rust-sgx-sdk.git" }
+
+[dependencies]
+serde = { git = "https://github.com/mesalock-linux/serde-sgx" }
+serde_derive = { git = "https://github.com/mesalock-linux/serde-sgx" }
+itertools = { version = "*", default-features = false }
+serde-big-array = { git = "https://github.com/mesalock-linux/serde-big-array-sgx" }
